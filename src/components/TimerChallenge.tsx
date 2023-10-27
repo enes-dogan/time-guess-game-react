@@ -1,17 +1,15 @@
 import { useState, useRef } from 'react';
 import ResultModal from './ResultModal';
 
-interface TimerChallengeProps {
-  title: string;
-  targetTime: number;
-}
+import { TimerChallengeProps } from '../types';
+import { ResultModalRef } from '../types';
 
 export default function TimerChallenge({
   title,
   targetTime,
 }: TimerChallengeProps) {
   const timer: React.MutableRefObject<undefined | number> = useRef();
-  const dialog = useRef<HTMLDialogElement>(null);
+  const dialog = useRef<ResultModalRef>(null);
 
   const [timerStarted, setTimerStarted] = useState(false);
   const [timerExpired, setTimerExpired] = useState(false);
@@ -20,7 +18,7 @@ export default function TimerChallenge({
     setTimerStarted(true);
     timer.current = setTimeout(() => {
       setTimerExpired(true);
-      dialog.current!.showModal();
+      dialog.current!.open();
     }, targetTime * 1000);
   }
 
