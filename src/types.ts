@@ -4,8 +4,9 @@ export interface TimerChallengeProps {
 }
 
 export interface ResultModalProps {
-  result: string;
   targetTime: number;
+  remainingTime: number;
+  onReset: () => void;
 }
 
 export interface ResultModalRef {
